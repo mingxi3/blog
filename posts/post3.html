@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mingxi的博客 - Python小项目：猜数字游戏</title>
+  <!-- 引入样式文件 -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- 代码高亮 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+  <!-- 交互特效 -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header>
+    <nav>
+      <div class="logo">Mingxi的博客</div>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul>
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="../archive.html">归档</a></li>
+        <li><a href="../about.html">关于</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 主容器 -->
+  <main class="container">
+    <!-- 文章内容 -->
+    <article>
+      <header>
+        <h1>Python小项目：猜数字游戏</h1>
+        <div class="meta">发布日期：<time>2024-05-05</time> | 标签：<span>#Python</span> <span>#编程入门</span> <span>#猜数字游戏</span></div>
+      </header>
+
+      <div class="content">
+        <p>大家好！我是Mingxi，一名对编程充满兴趣的小学生。今天，我想和大家分享一个我自己编写的Python小游戏——猜数字游戏。这是一个非常适合编程初学者的小项目，不仅能帮助我们熟悉Python的基本语法，还能让我们体验到编程的乐趣！</p>
+        
+        <img src="https://picsum.photos/800/450?random=5" alt="Python猜数字游戏" class="post-image">
+
+        <h2>游戏规则</h2>
+        
+        <p>猜数字游戏的规则很简单：</p>
+        
+        <ol>
+            <li>电脑随机生成一个1到100之间的整数。</li>
+            <li>玩家输入一个猜测的数字。</li>
+            <li>电脑告诉玩家猜测的数字是太大还是太小。</li>
+            <li>玩家根据提示继续猜测，直到猜对为止。</li>
+        </ol>
+        
+        <h2>需要用到的Python知识</h2>
+        
+        <p>在编写这个游戏之前，我们需要了解一些基本的Python知识：</p>
+        
+        <ul>
+            <li><strong>变量</strong>：用来存储数据的容器。</li>
+            <li><strong>输入输出</strong>：通过<code>input()</code>函数获取用户输入，通过<code>print()</code>函数输出信息。</li>
+            <li><strong>条件判断</strong>：使用<code>if-elif-else</code>语句根据不同条件执行不同的代码块。</li>
+            <li><strong>循环</strong>：使用<code>while</code>循环让程序重复执行某些操作。</li>
+            <li><strong>随机数生成</strong>：使用<code>random</code>模块生成随机数。</li>
+        </ul>
+        
+        <h2>编写游戏代码</h2>
+        
+        <p>现在，让我们开始编写猜数字游戏的代码吧！</p>
+        
+        <pre><code class="language-python"># 导入random模块，用于生成随机数
+import random
+
+# 欢迎玩家
+print("欢迎来到猜数字游戏！")
+print("我已经想好了一个1到100之间的数字，你能猜出来吗？")
+
+# 生成1到100之间的随机数
+secret_number = random.randint(1, 100)
+
+# 初始化猜测次数
+guesses_made = 0
+
+# 游戏主循环
+while True:
+    # 获取玩家的猜测
+    guess = input("请输入你的猜测：")
+    
+    # 将输入的字符串转换为整数
+    # 使用try-except处理可能的错误
+    try:
+        guess = int(guess)
+    except ValueError:
+        print("请输入一个有效的数字！")
+        continue
+    
+    # 增加猜测次数
+    guesses_made += 1
+    
+    # 检查猜测是否正确
+    if guess < secret_number:
+        print("太小了！再大一点。")
+    elif guess > secret_number:
+        print("太大了！再小一点。")
+    else:
+        # 玩家猜对了
+        print(f"恭喜你！你猜对了！答案就是{secret_number}。")
+        print(f"你一共猜了{guesses_made}次。")
+        break</code></pre>
+        
+        <h2>代码解析</h2>
+        
+        <p>让我来解释一下这段代码的意思：</p>
+        
+        <ol>
+            <li><code>import random</code>：导入random模块，我们需要用它来生成随机数。</li>
+            <li><code>print("欢迎来到猜数字游戏！")</code>：向玩家显示欢迎信息。</li>
+            <li><code>secret_number = random.randint(1, 100)</code>：使用random模块的randint函数生成一个1到100之间的随机整数。</li>
+            <li><code>guesses_made = 0</code>：初始化一个变量来记录玩家的猜测次数。</li>
+            <li><code>while True:</code>：开始一个无限循环，直到玩家猜对了数字才会退出。</li>
+            <li><code>guess = input("请输入你的猜测：")</code>：获取玩家输入的猜测。</li>
+            <li>try-except语句：尝试将玩家输入的内容转换为整数，如果输入的不是数字，就提示玩家并继续循环。</li>
+            <li><code>guesses_made += 1</code>：每次猜测后，猜测次数加1。</li>
+            <li>if-elif-else语句：根据玩家的猜测与秘密数字的大小关系，给出不同的提示。</li>
+            <li>当玩家猜对了数字时，打印恭喜信息和猜测次数，然后使用<code>break</code>语句退出循环，游戏结束。</li>
+        </ol>
+        
+        <h2>让游戏更有趣</h2>
+        
+        <p>基础版的猜数字游戏虽然简单，但我们可以通过添加一些功能让它变得更有趣！比如：</p>
+        
+        <h3>1. 添加难度选择</h3>
+        
+        <p>我们可以让玩家选择游戏的难度，不同难度对应不同的数字范围和最大猜测次数。</p>
+        
+        <pre><code class="language-python"># 导入random模块，用于生成随机数
+import random
+
+# 欢迎玩家
+print("欢迎来到猜数字游戏！")
+
+# 让玩家选择难度
+print("请选择难度：")
+print("1. 简单（1-50，最多10次机会）")
+print("2. 中等（1-100，最多8次机会）")
+print("3. 困难（1-200，最多5次机会）")
+
+difficulty = input("请输入1、2或3：")
+
+# 根据难度设置参数
+if difficulty == "1":
+    max_number = 50
+    max_guesses = 10
+elif difficulty == "2":
+    max_number = 100
+    max_guesses = 8
+elif difficulty == "3":
+    max_number = 200
+    max_guesses = 5
+else:
+    # 默认难度
+    print("输入无效，将使用中等难度。")
+    max_number = 100
+    max_guesses = 8
+
+# 生成随机数
+secret_number = random.randint(1, max_number)
+
+# 初始化猜测次数
+guesses_made = 0
+
+# 游戏主循环
+while guesses_made < max_guesses:
+    # 获取玩家的猜测
+    guess = input(f"请输入你的猜测（1-{max_number}）：")
+    
+    # 将输入的字符串转换为整数
+    try:
+        guess = int(guess)
+    except ValueError:
+        print("请输入一个有效的数字！")
+        continue
+    
+    # 检查输入的数字是否在范围内
+    if guess < 1 or guess > max_number:
+        print(f"请输入1到{max_number}之间的数字！")
+        continue
+    
+    # 增加猜测次数
+    guesses_made += 1
+    
+    # 检查猜测是否正确
+    if guess < secret_number:
+        print(f"太小了！再大一点。你还剩{max_guesses - guesses_made}次机会。")
+    elif guess > secret_number:
+        print(f"太大了！再小一点。你还剩{max_guesses - guesses_made}次机会。")
+    else:
+        # 玩家猜对了
+        print(f"恭喜你！你猜对了！答案就是{secret_number}。")
+        print(f"你一共猜了{guesses_made}次。")
+        break
+else:
+    # 玩家用完了所有机会
+    print(f"游戏结束！正确答案是{secret_number}。")</code></pre>
+        
+        <h3>2. 记录最高得分</h3>
+        
+        <p>我们可以将玩家的最好成绩保存在文件中，这样每次玩游戏时都能看到自己的进步！</p>
+        
+        <pre><code class="language-python"># 在游戏结束后添加以下代码
+
+# 检查是否打破了最高记录
+try:
+    with open("high_score.txt", "r") as f:
+        high_score = int(f.read())
+except (FileNotFoundError, ValueError):
+    high_score = max_guesses + 1  # 初始最高分为不可能的高分
+
+if guesses_made < high_score:
+    print("恭喜你！你打破了最高记录！")
+    with open("high_score.txt", "w") as f:
+        f.write(str(guesses_made))
+else:
+    print(f"当前最高记录是{high_score}次猜测。")</code></pre>
+        
+        <h2>如何运行这个游戏</h2>
+        
+        <p>要运行这个猜数字游戏，你需要：</p>
+        
+        <ol>
+            <li>在电脑上安装Python（可以从<a href="https://www.python.org/" target="_blank">Python官网</a>下载安装）。</li>
+            <li>使用文本编辑器（如记事本、VS Code等）创建一个新文件，将上面的代码复制进去。</li>
+            <li>将文件保存为<code>guess_number.py</code>（注意扩展名必须是<code>.py</code>）。</li>
+            <li>打开命令提示符（Windows）或终端（Mac/Linux）。</li>
+            <li>使用<code>cd</code>命令导航到保存文件的目录。</li>
+            <li>输入<code>python guess_number.py</code>并按回车键，游戏就开始了！</li>
+        </ol>
+        
+        <h2>结语</h2>
+        
+        <p>猜数字游戏是一个非常适合编程初学者的小项目，它涵盖了Python编程的许多基本概念，如变量、输入输出、条件判断、循环等。通过编写这个游戏，我们不仅能够巩固所学的Python知识，还能体验到编程的乐趣和成就感。</p>
+        
+        <p>如果你是编程新手，不妨从这个简单的游戏开始，然后尝试添加更多的功能，让它变得更加有趣和复杂。记住，编程的乐趣在于创造和分享！</p>
+        
+        <p>希望这篇文章能够帮助到和我一样对编程感兴趣的小学生们。如果你有任何问题或建议，欢迎在评论区留言！</p>
+      </div>
+    </article>
+  </main>
+
+  <!-- 引入脚本文件 -->
+  <script src="../js/script.js"></script>
+</body>
+</html>
